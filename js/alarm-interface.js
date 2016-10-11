@@ -1,9 +1,12 @@
 var Alarm = require('./../js/alarm.js').alarmModule;
 
 $(function() {
-  var now = moment();
+  var now;
   var audio = new Audio('http://www.stephaniequinn.com/Music/Commercial%20DEMO%20-%2015.mp3');
-  $('#time').text(now);
+  setInterval(function(){
+    now = moment();
+    $('#time').text(now.format("dddd, MMMM Do YYYY, h:mm:ss a"));
+  }, 1000);
 
   var soundAlarm = function(time) {
     setTimeout(function() {
@@ -28,7 +31,7 @@ $(function() {
 
   $("#snooze").click(function(event) {
     stopAlarm();
-    soundAlarm(30000);
+    soundAlarm(100000);
   });
 
   $("#stopAlarm").click(function(event) {
